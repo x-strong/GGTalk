@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TalkBase.Server.ResourceCenter&lt;TUser, TGroup&gt;">
+    <Position X="2.5" Y="1.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAQAAIAEUADAAAAAAAEAAAAAAAAAAEAAAAQAAA=</HashCode>
+      <FileName>Server\Core\ResourceCenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RapidServerEngine" />
+      <Property Name="ServerGlobalCache" />
+      <Property Name="GlobalService" />
+      <Property Name="Logger" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TalkBase.Server.ServerGlobalCache&lt;TUser, TGroup&gt;" Collapsed="true">
+    <Position X="7.25" Y="2" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AEGogFEwQCAIoAjEJBwAAgEAIIHQAAQGkAAoAIAAiRQ=</HashCode>
+      <FileName>Server\Core\ServerGlobalCache.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TalkBase.Server.IGlobalService" Collapsed="true">
+    <Position X="7.25" Y="1.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AggAEAAAgQAAAAAAAAEQAAAAAgAIAAIQAgAAAAAIAAA=</HashCode>
+      <FileName>Server\Core\IGlobalService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ESPlus.Rapid.IRapidServerEngine" Collapsed="true">
+    <Position X="7.25" Y="2.75" Width="2.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ESBasic.Loggers.IAgileLogger" Collapsed="true">
+    <Position X="7.25" Y="3.75" Width="2.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

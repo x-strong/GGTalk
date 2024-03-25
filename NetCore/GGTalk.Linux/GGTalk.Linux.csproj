@@ -1,0 +1,80 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ApplicationIcon>64.ico</ApplicationIcon>
+    <StartupObject />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants></DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\**" />
+    <None Remove="Fonts\AlibabaPuHuiTi.ttf" />
+    <None Remove="Fonts\msyh.ttf" />
+    <None Remove="Main.css" />
+    <None Remove="Stylesheet1.css" />
+    <None Remove="Stylesheet2.css" />
+    <None Remove="Views\FriendChatWindow.css" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Helpers\UnReadMsgBox.cs" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Fonts\msyh.ttf" />
+    <EmbeddedResource Include="Main.css" />
+    <EmbeddedResource Include="Stylesheet1.css" />
+    <EmbeddedResource Include="Stylesheet2.css" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="NetCoreAudio" Version="1.6.3" />
+    <PackageReference Include="SkiaSharp" Version="1.68.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="Xhm.CPF" Version="0.9.4" />
+    <PackageReference Include="Xhm.CPF.Linux" Version="0.9.4" />
+    <PackageReference Include="Xhm.CPF.Skia" Version="0.9.4" />
+    <PackageReference Include="Xhm.CPF.Windows" Version="0.9.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TalkBase.NetCore\TalkBase.NetCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DataRabbit.NetCore">
+      <HintPath>..\dlls\DataRabbit.NetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ESBasic.NetCore">
+      <HintPath>..\dlls\ESBasic.NetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ESFramework.MSide.NetCore">
+      <HintPath>..\dlls\ESFramework.MSide.NetCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controller\SeperateController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Templates\GroupItem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <Folder Include="Resources\orgBoxImgs\" />
+  </ItemGroup>
+
+</Project>

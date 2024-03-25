@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Controls\ChatBox\" />
+    <Folder Include="Server\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ESBasic.NetCore">
+      <HintPath>..\dlls\ESBasic.NetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ESFramework.MSide.NetCore">
+      <HintPath>..\dlls\ESFramework.MSide.NetCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DynamicGroup\BlobFragmentContract.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\BlobReceiver.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\Contracts.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\GroupInfoTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\Information.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\Passive\DynamicGroupOutter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\Passive\DynamicGroupPassiveHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\Passive\IDynamicGroupOutter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\Server\DynamicGroupHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\Server\DynamicGroupManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\Server\IDynamicGroupController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\Server\IDynamicGroupManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DynamicGroup\Server\P2PChannelManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

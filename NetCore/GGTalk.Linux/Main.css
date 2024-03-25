@@ -1,0 +1,428 @@
+﻿@font-face {
+    font-family: '微软雅黑';
+    src: url('res://GGTalk.Linux/Fonts/msyh.ttf');
+}
+/*加载字体*/
+
+/*不同系统的字体不同，自己根据情况改或者使用内嵌字体*/
+@media windows {
+    * {
+        FontFamily: '微软雅黑'; 
+    }
+}
+
+@media osx {
+    * {
+        FontFamily: '苹方-简';
+    }
+}
+
+@media linux {
+    * {
+        FontFamily: '微软雅黑';
+    }
+}
+
+
+Button {
+    Cursor :Hand;
+}
+
+/*按钮样式1*/
+.BlueButton {
+    Background: #619fd7;
+    Foreground: #fff;
+    BorderFill: null;
+}
+
+    .BlueButton[IsMouseOver=true] {
+        Background: #73a7dc;
+        animation-name: buttonAnimationEnter;
+        animation-duration: 0.2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    .BlueButton[IsPressed=true] {
+        Background: #7db8f1;
+    }
+
+/*按钮样式2*/
+.CancelButton {
+    Background: rgb(192,192,192);
+    Foreground: #fff;
+    BorderFill: null;
+    BorderThickness: 0,0,0,0;
+}
+
+    .CancelButton[IsMouseOver=true] {
+        Background: rgb(161,161,161);
+        animation-name: buttonAnimationEnter;
+        animation-duration: 0.2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    .CancelButton[IsPressed=true] {
+        Background: rgb(192,192,192);
+    }
+
+/*按钮样式3*/
+.ChatButton {
+    Background: #adcdeb;
+    Foreground: #fff;
+    BorderFill: null;
+}
+
+    .ChatButton[IsMouseOver=true] {
+        Background: #dfefff;
+        animation-name: buttonAnimationEnter;
+        animation-duration: 0.2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    .ChatButton[IsPressed=true] {
+        Background: #cae2ff;
+    }
+
+/*按钮样式4*/
+.chathistoryButton {
+    Background: rgb(173,176,159);
+}
+
+    .chathistoryButton[IsMouseOver=true] {
+        Background: rgb(192,192,192);
+    }
+
+    .chathistoryButton[IsPressed=true] {
+        Background: rgb(173,176,159);
+    }
+
+/*按钮样式5*/
+.CheckButton {
+    Background: #f3f3f3;
+    Foreground: #000000;
+    BorderFill: null;
+}
+
+    .CheckButton[IsMouseOver=true] {
+        Background: #efefef;
+        animation-name: buttonAnimationEnter;
+        animation-duration: 0.2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    .CheckButton[IsPressed=true] {
+        Background: rgb(220,220,220);
+    }
+
+/*按钮样式6*/
+.loginBt {
+    Background: rgb(64,124,255);
+    Foreground: #fff;
+}
+
+    .loginBt[IsMouseOver=true] {
+        Background: rgb(153,204,255);
+    }
+
+    .loginBt[IsPressed=true] {
+        Background: rgb(194,224,255);
+    }
+
+/*按钮样式7*/
+.NetWorkButton {
+    Background: #fff;
+    BorderFill: #fff;
+    BorderThickness: 0,0,0,0;
+}
+
+    .NetWorkButton[IsMouseOver=true] {
+        Background: #e4e4e4;
+    }
+
+    .NetWorkButton[IsPressed=true] {
+        Background: #d9d9d9;
+    }
+
+/*按钮样式8*/
+.NoticeCheckButton[IsPressed=true] {
+    Background: rgb(240,240,240);
+}
+
+/*按钮样式9*/
+RadioButton #radioButtonBorder {
+    StrokeFill: #1E9FFF;
+}
+
+RadioButton #optionMark {
+    StrokeFill: #1E9FFF;
+    Fill: #1E9FFF;
+}
+
+/*按钮样式10*/
+.CloseSearch {
+    Background: #fff;
+    Foreground: #fff;
+    BorderFill: null;
+}
+
+    .CloseSearch[IsMouseOver=true] {
+        Background: #f3f3f3;
+        animation-name: buttonAnimationEnter;
+        animation-duration: 0.2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    .CloseSearch[IsPressed=true] {
+        Background: #eeeeee;
+    }
+
+/*按钮样式11*/
+.friendchatftButton {
+    Background: rgb(238,238,238);
+}
+
+    .friendchatftButton[IsMouseOver=true] {
+        Background: #e4e4e4;
+    }
+
+    .friendchatftButton[IsPressed=true] {
+        Background: rgb(220,220,220);
+    }
+
+/*按钮样式12*/
+.commonButton {
+    Background: #fff;
+    BorderFill: #d9d9d9;
+}
+
+    .commonButton[IsMouseOver=true] {
+        Background: #e4e4e4;
+    }
+
+    .commonButton[IsPressed=true] {
+        Background: #f1f1f1;
+    }
+
+
+
+/*输入框样式1*/
+TextBox {
+    BorderFill: rgb(220,220,220);
+    BorderStroke: 1;
+    IsAllowPasteImage:false;
+}
+
+    TextBox [IsFocused=true] {
+        SelectionFill: rgb(153,201,239);
+    }
+
+    TextBox [IsFocused=false] {
+        SelectionFill: null;
+    }
+
+    TextBox  #contentPresenter {
+        Padding: 3;
+    }
+
+/*输入框样式1*/
+ ElTextBox {
+    BorderFill: rgb(220,220,220);
+    BorderStroke: 1;
+}
+
+     ElTextBox[IsFocused=true] {
+        SelectionFill: rgb(153,201,239);
+    }
+
+     ElTextBox[IsFocused=false] {
+        SelectionFill: null;
+    }
+
+     ElTextBox #contentPresenter {
+        Padding: 3;
+    }
+
+/*输入框样式2*/
+.TextBoxModeA { /*取消滚动条*/
+    HScrollBarVisibility: Hidden;
+    VScrollBarVisibility: Hidden;
+    WordWarp: false;
+    BorderFill: #619fd7;
+    BorderThickness: 1,1,1,1;
+    BorderType: BorderThickness;
+}
+
+/*输入框样式3*/
+.NetWorkTextBox {
+    Background: #fff;
+    BorderThickness: 0,0,0,0;
+}
+
+    .NetWorkTextBox[IsMouseOver=true] {
+        BorderFill: rgb(51,153,255);
+        BorderThickness: 1,1,1,1;
+    }
+
+    .NetWorkTextBox[IsPressed=true] {
+        BorderFill: rgb(51,153,255);
+        BorderThickness: 1,1,1,1;
+    }
+
+/*输入框样式4*/
+.commonTextbox {
+    HScrollBarVisibility: Hidden;
+    VScrollBarVisibility: Hidden;
+    WordWarp: false;
+    BorderFill: rgb(150,180,198);
+    BorderThickness: 1,1,1,1;
+    BorderStroke: 1;
+}
+
+/*输入框样式5*/
+.AddGroupTextbox {
+    BorderFill: rgb(150,180,198);
+    BorderStroke: 1;
+    BorderThickness: 1,1,1,1;
+}
+
+/*输入框样式6*/
+.commonTextBoxB {
+    HScrollBarVisibility: Hidden;
+    VScrollBarVisibility: Hidden;
+    WordWarp: false;
+}
+
+/*文本样式1*/
+#DropDownPanel TextBlock {
+    MarginLeft: 5;
+}
+
+
+
+
+/*单选框样式1*/
+CheckBox #indeterminateMark {
+    Fill: #1E9FFF;
+}
+
+CheckBox #checkBoxBorder {
+    Background: #fff;
+    BorderFill: #1E9FFF;
+}
+
+CheckBox[IsChecked=true] #checkBoxBorder {
+    Background: #1E9FFF;
+    BorderFill: #1E9FFF;
+}
+
+CheckBox Polyline {
+    StrokeFill: #fff;
+}
+
+
+
+
+/*下拉框样式1*/
+ComboBox {
+    BorderFill: rgb(220,220,220);
+    BorderStroke: 1;
+    Background: #fff;
+}
+
+/*下拉框样式2*/
+.SystemComboBox {
+    BorderFill: rgb(51,161,224);
+    BorderStroke: 1;
+    Background: #fff;
+    BorderThickness: 1,1,1,1;
+}
+
+/*下拉框样式3*/
+.DefaultComboBox {
+    BorderFill: rgb(220,220,220);
+    BorderStroke: 1;
+    Background: #fff;
+}
+
+
+
+
+/*选项卡样式1*/
+TabControl #headBorder {
+    Background: #fff;
+}
+
+
+
+
+
+/*选项卡Item样式1*/
+TabItem > Border {
+    BorderThickness: 0,0,0,2;
+}
+
+TabItem[IsSelected=true] > Border {
+    BorderFill: #1E9FFF;
+}
+
+TabItem[IsSelected=true] {
+    Foreground: #1E9FFF;
+}
+
+
+
+
+/*滚动条样式1*/
+ScrollBar {
+    Background: null;
+}
+
+    ScrollBar Thumb {
+        CornerRadius: 5;
+        Background: rgba(153, 153, 153, 0.3)
+    }
+
+    ScrollBar[Orientation=Horizontal] {
+        Height: 10;
+    }
+
+    ScrollBar[Orientation=Vertical] {
+        Width: 10;
+    }
+
+    ScrollBar #PART_LineUpButton, ScrollBar #PART_LineDownButton {
+        Visibility: Collapsed;
+    }
+
+
+
+
+/*模板样式1*/
+GroupChatTabItem[IsSelected=true] > Border {
+    Background: rgb(200,222,241);
+    BorderFill: rgb(200,222,241);
+}
+
+GroupChatTabItem[IsMouseOver=true] > Border {
+    Background: rgb(240,246,251); 
+    BorderFill: rgb(240,246,251);
+}
+
+
+
+
+/*模板样式2*/
+NoticeTabItem[IsSelected=true] > Border {
+    Background: rgb(200,222,241);
+    BorderFill: rgb(200,222,241);
+}
+
+NoticeTabItem[IsMouseOver=true] > Border {
+    Background: rgb(152, 200, 237);
+    BorderFill: rgb(152, 200, 237);
+}

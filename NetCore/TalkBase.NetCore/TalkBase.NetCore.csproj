@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants></DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SqlSugarCore" Version="5.0.2.8" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ESFramework.Boost.NetCore\ESFramework.Boost.MSide.NetCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DataRabbit.NetCore">
+      <HintPath>..\dlls\DataRabbit.NetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ESBasic.NetCore">
+      <HintPath>..\dlls\ESBasic.NetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ESFramework.MSide.NetCore">
+      <HintPath>..\dlls\ESFramework.MSide.NetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="OMCS.Linux">
+      <HintPath>..\dlls\OMCS.Linux.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

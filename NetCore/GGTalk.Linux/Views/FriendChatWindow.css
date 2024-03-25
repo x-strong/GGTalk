@@ -1,0 +1,243 @@
+﻿@media windows {
+    * {
+        FontFamily: '微软雅黑'; /*不同系统的字体不同，自己根据情况改或者使用内嵌字体*/
+    }
+}
+
+@media osx {
+    * {
+        FontFamily: '苹方-简';
+    }
+}
+
+@media linux {
+    * {
+        FontFamily: '微软雅黑';
+    }
+}
+/*
+
+
+.NoticeCheckButton[IsPressed=true] {
+    Background: rgb(240,240,240);
+}
+
+
+NoticeTabItem[IsSelected=true] > Border {
+    Background: rgb(200,222,241);
+    BorderFill: rgb(200,222,241);
+}
+
+NoticeTabItem[IsMouseOver=true] > Border {
+    Background: rgb(152, 200, 237);
+    BorderFill: rgb(152, 200, 237);
+}
+
+
+
+
+GroupChatTabItem[IsSelected=true] > Border {
+    Background: rgb(200,222,241);
+    BorderFill: rgb(200,222,241);
+}
+
+GroupChatTabItem[IsMouseOver=true] > Border {
+    Background: rgb(155, 212, 254);
+    BorderFill: rgb(240,246,251);
+}
+
+
+
+
+#DropDownPanel TextBlock {
+    MarginLeft: 5;
+}
+
+
+.CheckButton {
+    Background: #f3f3f3;
+    Foreground: #000000;
+    BorderFill: null;
+}
+
+
+
+    .CheckButton[IsMouseOver=true] {
+        Background: #efefef;
+        animation-name: buttonAnimationEnter;
+        animation-duration: 0.2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    .CheckButton[IsPressed=true] {
+        Background: rgb(220,220,220);
+    }
+
+
+
+.BlueButton {
+    Background: #619fd7;
+    Foreground: #fff;
+    BorderFill: null;
+}
+
+
+
+    .BlueButton[IsMouseOver=true] {
+        Background: #73a7dc;
+        animation-name: buttonAnimationEnter;
+        animation-duration: 0.2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    .BlueButton[IsPressed=true] {
+        Background: #7db8f1;
+    }
+
+.ChatButton {
+    Background: #adcdeb;
+    Foreground: #fff;
+    BorderFill: null;
+}
+
+
+
+    .ChatButton[IsMouseOver=true] {
+        Background: #dfefff;
+        animation-name: buttonAnimationEnter;
+        animation-duration: 0.2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    .ChatButton[IsPressed=true] {
+        Background: #cae2ff;
+    }
+
+.CloseSearch {
+    Background: #fff;
+    Foreground: #fff;
+    BorderFill: null;
+}
+
+    .CloseSearch[IsMouseOver=true] {
+        Background: #f3f3f3;
+        animation-name: buttonAnimationEnter;
+        animation-duration: 0.2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    .CloseSearch[IsPressed=true] {
+        Background: #eeeeee;
+    }
+
+CheckBox #indeterminateMark {
+    Fill: #1E9FFF;
+}
+
+CheckBox #checkBoxBorder {
+    Background: #fff;
+    BorderFill: #1E9FFF;
+}
+
+CheckBox[IsChecked=true] #checkBoxBorder {
+    Background: #1E9FFF;
+    BorderFill: #1E9FFF;
+}
+
+CheckBox Polyline {
+    StrokeFill: #fff;
+}
+
+RadioButton #radioButtonBorder {
+    StrokeFill: #1E9FFF;
+}
+
+RadioButton #optionMark {
+    StrokeFill: #1E9FFF;
+    Fill: #1E9FFF;
+}
+
+ComboBox {
+    BorderFill: rgb(220,220,220);
+    BorderStroke: 1;
+    Background: #fff;
+}
+
+TextBox {
+    BorderFill: rgb(220,220,220);
+    BorderStroke: 1;
+}
+
+    TextBox #contentPresenter {
+        Padding: 3;
+    }
+
+.Single { /*单行文本框*/
+    AcceptsReturn: false;
+    HScrollBarVisibility: Hidden;
+    VScrollBarVisibility: Hidden;
+}
+
+TabControl #headBorder {
+    Background: #fff;
+}
+
+TabItem > Border {
+    BorderThickness: 0,0,0,2;
+}
+
+TabItem[IsSelected=true] > Border {
+    BorderFill: #1E9FFF;
+}
+
+TabItem[IsSelected=true] {
+    Foreground: #1E9FFF;
+}
+
+#caption {
+    Background: #1E9FFF;
+}
+/*TextBox的滚动条样式例子*/
+/*TextBox ScrollBar {
+    Background: #fff;
+}
+
+    TextBox ScrollBar Thumb {
+        CornerRadius: 5;
+    }
+
+    TextBox ScrollBar[Orientation=Horizontal] {
+        Height: 12;
+    }
+
+    TextBox ScrollBar[Orientation=Vertical] {
+        Width: 12;
+    }
+
+    TextBox ScrollBar #PART_LineUpButton, TextBox ScrollBar #PART_LineDownButton {
+        Visibility: Collapsed;
+    }*/
+
+
+.NetWorkButton {
+    Background: #fff;
+    BorderFill: #fff;
+    BorderThickness: 0,0,0,0;
+}
+
+    .NetWorkButton[IsMouseOver=true] {
+        Background: rgb(194,224,255);
+        BorderFill: rgb(51,153,255);
+        BorderThickness: 1,1,1,1;
+    }
+
+    .NetWorkButton[IsPressed=true] {
+        Background: rgb(153,204,255);
+        BorderFill: rgb(51,153,255);
+        BorderThickness: 1,1,1,1;
+    }
+

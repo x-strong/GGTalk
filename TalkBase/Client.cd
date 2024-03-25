@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TalkBase.Client.ResourceCenter&lt;TUser, TGroup&gt;">
+    <Position X="4" Y="1.25" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ACAAAAACgIIASYACIgAASAAAAAiAiAgCAAIIQAAwAAA=</HashCode>
+      <FileName>Client\Core\ResourceCenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ClientGlobalCache" />
+      <Property Name="ClientOutter" />
+      <Property Name="RapidPassiveEngine" />
+      <Property Name="Logger" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TalkBase.Client.ClientGlobalCache&lt;TUser, TGroup&gt;" Collapsed="true">
+    <Position X="8.75" Y="1.25" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CCQAAAAAAIgAACEEAAAAAARAAAAAAAAAAAgAACAAAAA=</HashCode>
+      <FileName>Client\Core\ClientGlobalCache.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TalkBase.Client.IClientOutter" Collapsed="true">
+    <Position X="8.75" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>CEHQ0AAowSBAAMgEABQAAAgAAABAAARAgAiIAAQEAJU=</HashCode>
+      <FileName>Client\Core\IClientOutter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ESPlus.Rapid.IRapidPassiveEngine" Collapsed="true">
+    <Position X="8.75" Y="3" Width="2.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ESBasic.Loggers.IAgileLogger" Collapsed="true">
+    <Position X="8.75" Y="4" Width="2.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

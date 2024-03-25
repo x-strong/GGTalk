@@ -1,0 +1,1594 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataRabbit.NetCore</name>
+    </assembly>
+    <members>
+        <member name="T:DataRabbit.BaseEntityAccesser`1">
+            <summary>
+            BaseEntityAccesser 用于实现IEntityAccesser接口中的大量重载方法，只将最核心的少数方法留给派生类实现。
+            zhuweisky 2009.07.25
+            </summary>   
+        </member>
+        <member name="T:DataRabbit.AggregateQuery">
+            <summary>
+            AggregateQuery 聚合查询项目。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.AggregateQueryType">
+            <summary>
+            AggregateQueryType 聚合查询的类型。如max/min/sum/avg等等
+            </summary>
+        </member>
+        <member name="F:DataRabbit.AggregateQueryType.Count">
+            <summary>
+            统计个数。
+            </summary>
+        </member>
+        <member name="F:DataRabbit.AggregateQueryType.CountDistinct">
+            <summary>
+            统计区分值的个数。
+            </summary>
+        </member>
+        <member name="F:DataRabbit.AggregateQueryType.Max">
+            <summary>
+            获取最大值。
+            </summary>
+        </member>
+        <member name="F:DataRabbit.AggregateQueryType.Min">
+            <summary>
+            获取最小值。
+            </summary>
+        </member>
+        <member name="F:DataRabbit.AggregateQueryType.Sum">
+            <summary>
+            统计总和。
+            </summary>
+        </member>
+        <member name="F:DataRabbit.AggregateQueryType.Avg">
+            <summary>
+            统计平均值。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.ColumnItem">
+            <summary>
+            ColumnItem 数据列及其对应的值。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.ColumnUpdating">
+            <summary>
+            ColumnUpdating 要更新的数据列及其对应的值（可以是增量）。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.ColumnUpdating.GetExpression(DataRabbit.IParameterFormatter,System.Int32@,DataRabbit.FilterParameterCollection@)">
+            <summary>
+            GetExpression 根据当前的ColumnUpdating创建Set表达式
+            </summary>        
+        </member>
+        <member name="T:DataRabbit.Orderby">
+            <summary>
+            Orderby 指明要按哪个字段进行排序（升序？降序？）
+            </summary>
+        </member>
+        <member name="P:DataRabbit.Orderby.Column">
+            <summary>
+            Column 返回的结果按照哪个列进行排序。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.Orderby.Ascend">
+            <summary>
+            Ascend 排序结果采用升序还是降序？
+            </summary>
+        </member>
+        <member name="T:DataRabbit.PageQuery">
+            <summary>
+            PageQuery 分页查询的条件。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.PageQuery.FilterTree">
+            <summary>
+            FilterTree 过滤数据的条件。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.PageQuery.PageSize">
+            <summary>
+            PageSize 分页的大小。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.PageQuery.PageIndex">
+            <summary>
+            PageIndex 要获取第几页的记录。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.PageQuery.OrderbyList">
+            <summary>
+            ColumnOrderby 返回的结果按照哪些列进行排序。如果长度为0，表示不需要排序。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.PageQuery.CarriedAggregateQueryDictionary">
+            <summary>
+            CarriedAggregateQueryDictionary 携带的聚合查询项目的字典（针对所有满足FilterTree的记录）。键表示聚合查询返回的的结果的命名（如"SumScore"，不可重复），值表示聚合查询项目。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.PageQuery.IsOnlyCountQueryInCarried(System.String@)">
+            <summary>
+            IsOnlyCountQueryInCarried 携带的聚合查询中，是否只有Count查询
+            </summary>        
+        </member>
+        <member name="T:DataRabbit.PageQueryResult`1">
+            <summary>
+            PageQueryResult 分页查询的结果。
+            注意：它同时也可以作为整页缓存的单位，进行整页缓存，此时，GetPart便是从整页中获取一部分作为分页。
+            </summary>
+        </member>
+        <member name="F:DataRabbit.PageQueryResult`1.carriedAggregateQueryResult">
+            <summary>
+            carriedAggregateQueryResult 携带的聚合查询项目的结果。键表示聚合查询返回的结果的命名（与查询参数PageQuery.CarriedAggregateQueryDictionary一致），值表示聚合查询的结果。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.PageQueryResult`1.AddAggregateQueryResult(System.String,System.Object)">
+            <summary>
+            AddAggregateQueryResult 添加所携带的聚合查询项目的结果。
+            </summary>  
+        </member>
+        <member name="M:DataRabbit.PageQueryResult`1.GetAggregateQueryResult(System.String)">
+            <summary>
+            GetAggregateQueryResult 获取所携带的聚合查询项目的结果。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.PageQueryResult`1.GetPart(System.Int32,System.Int32)">
+            <summary>
+            GetPart 当前对象为整页时，该方法用于返回整页中的一个分页。
+            </summary>        
+        </member>
+        <member name="T:DataRabbit.Comparison4OrderbyCreator`1">
+            <summary>
+            Comparison4OrderbyCreator 创建用于Entity对象排序的比较算子，并缓存。
+            zhuweisky 2010.01.31
+            </summary>    
+        </member>
+        <member name="T:DataRabbit.Condition">
+            <summary>
+            Condition 用于协助Filter和GroupFilter完成条件判断。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.FilterHelper.PredicateComparison(System.IComparable,System.Object,DataRabbit.ComparisonOperators)">
+            <summary>
+            PredicateComparison 判断(first)comparisonOperator(second)是否成立
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.FilterHelper.EnsureColumnValueOfFilter(System.Object,DataRabbit.ComparisonOperators)">
+            <summary>
+            EnsureColumnValueOfFilter 确保colVal满足Filter.ColumnValue所要求的。
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.FilterHelper.GetScopeOfBetweenFilter(System.Collections.IEnumerable,System.IComparable@,System.IComparable@)">
+            <summary>
+            GetScopeOfBetweenFilter 当Filter的比较符为BetweenAnd时，从ColumnValue中分解处min和max
+            </summary>      
+        </member>
+        <!-- 对于成员“T:DataRabbit.AgileFilterTree”忽略有格式错误的 XML 注释 -->
+        <!-- 对于成员“M:DataRabbit.AgileFilterTree.#ctor(System.Collections.Generic.IDictionary{System.String,DataRabbit.Filter},System.String)”忽略有格式错误的 XML 注释 -->
+        <!-- 对于成员“T:DataRabbit.ComplexFilterTree”忽略有格式错误的 XML 注释 -->
+        <member name="T:DataRabbit.Filter">
+            <summary>
+            Filter 过滤数据的条件，内含一个Column的名和值以及比较操作符。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.Filter.GetBooleanExpression(DataRabbit.IParameterFormatter,System.Int32@,DataRabbit.FilterParameterCollection@)">
+            <summary>
+            GetBooleanExpression 根据当前的Filter创建BOOL表达式
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.Filter.SelectFrom``2(ESBasic.Collections.SortedArray{``0,``1})">
+            <summary>
+            SelectFrom 从SortedList找出满足当前条件的TVal列表。
+            </summary>
+            <typeparam name="TKey">对应当前Filter表示的列的取值</typeparam>
+            <typeparam name="TVal">返回的列表中的元素类型</typeparam>    
+            <param name="sortedList">已经按TKey排好序的列表</param>
+        </member>
+        <member name="T:DataRabbit.FilterParameter">
+            <summary>
+            FilterParameter 用于针对具体数据库类型的sql参数名称和值的封装。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.FilterParameter.Name">
+            <summary>
+            Name 参数名称，带前缀@的
+            </summary>
+        </member>
+        <member name="T:DataRabbit.FilterParameterCollection">
+            <summary>
+            FilterParameterCollection 
+            </summary>
+        </member>
+        <member name="T:DataRabbit.IFilterTree">
+            <summary>
+            IFilterTree 用于表示多个Filter的逻辑组合的条件树。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IFilterTree.Predicate``1(``0,ESBasic.Emit.ForEntity.IPropertyQuicker{``0})">
+            <summary>
+            Predicate 验证obj是否符合该Tree所要求的逻辑条件。
+            </summary>    
+        </member>
+        <member name="M:DataRabbit.IFilterTree.GetBooleanExpression(DataRabbit.IParameterFormatter,System.Int32@,System.Collections.Generic.IList{DataRabbit.FilterParameterCollection}@)">
+            <summary>
+            GetBooleanExpression 获取组合后的逻辑表达式
+            </summary>              
+            <param name="nextParaIndex">依据Index对参数进行编号，防止参数名同名</param>       
+        </member>
+        <member name="M:DataRabbit.RelativeFilter.GetBooleanExpression(DataRabbit.IParameterFormatter,System.Int32@,DataRabbit.FilterParameterCollection@)">
+            <summary>
+            GetBooleanExpression 根据当前的Filter创建BOOL表达式
+            </summary>        
+        </member>
+        <member name="T:DataRabbit.SimpleFilterTree">
+            <summary>
+            FilterTree 最简单的IFilterTree实现，仅仅支持要么全"and"、要么全"or"的条件逻辑组合
+            zhuweisky 2007.03.20
+            </summary>
+        </member>
+        <member name="T:DataRabbit.SingleFilterTree">
+            <summary>
+            SingleFilterTree 由单个Filter构成的条件树。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.TimeScopeFilter">
+            <summary>
+            TimeScopeFilter 用于决定离当前时间以前N小时以内的记录都符合条件。
+            （1）ColumnValue是一个整数，表示有效期的小时数。
+            （2）ColumnName对应的字段类型一定是DateTime。
+            </summary>
+        </member>
+        <!-- 对于成员“T:DataRabbit.AgileGroupFilterTree”忽略有格式错误的 XML 注释 -->
+        <!-- 对于成员“M:DataRabbit.AgileGroupFilterTree.#ctor(System.Collections.Generic.IDictionary{System.String,DataRabbit.GroupFilter},System.String)”忽略有格式错误的 XML 注释 -->
+        <!-- 对于成员“T:DataRabbit.ComplexGroupFilterTree”忽略有格式错误的 XML 注释 -->
+        <member name="T:DataRabbit.Groupby">
+            <summary>
+            Groupby 分组依据。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.GroupFilter">
+            <summary>
+            GroupFilter 过滤分组的条件。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.IGroupFilterTree">
+            <summary>
+            IGroupFilterTree 由多个GroupFilter构成的分组条件树的基础接口。
+            zhuweisky 2009.09.02
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IGroupFilterTree.GetHavingStatement(DataRabbit.IParameterFormatter,System.Int32@,System.Collections.Generic.IList{DataRabbit.FilterParameterCollection}@)">
+            <summary>
+            GetHavingStatement 获取T-SQL的having字句。
+            </summary>      
+        </member>
+        <member name="T:DataRabbit.SimpleGroupFilterTree">
+            <summary>
+            SimpleGroupFilterTree 由多个GroupFilter进行全与或全或逻辑运算构成的分组条件树
+            </summary>
+        </member>
+        <member name="T:DataRabbit.SingleGroupFilterTree">
+            <summary>
+            SingleGroupFilterTree 用于封装单个条件的GroupFilterTree。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.IParameterFormatter">
+            <summary>
+            IParameterFormatter 将一个Filter转化为一个查询Sql条件时，需要用到的格式化器。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IParameterFormatter.FormatFiledSafely(System.String)">
+            <summary>
+            FormatFiledSafely 将SQL语句中的字段名转化为安全的形式，防止与数据库的关键字同名的field引发冲突
+            </summary>        
+        </member>
+        <member name="P:DataRabbit.IParameterFormatter.ParameterPrefix">
+            <summary>
+            ParameterPrefix sql参数的前缀，如SqlServer采用"@"，Oracle采用":"等。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.IEntity`1">
+            <summary>
+            IEntity  实体的基础接口，该接口不是必须的。
+            如果要使用DataRabbit.Containers中提供的Entity缓存功能或内存数据库的功能，则该接口是必须实现的。
+            接口的背后含义：Entity有唯一ID，或者，目标数据表必须有主键，且有唯一的主键（单值主键），不能为联合主键。
+            </summary>
+            <typeparam name="TPKey">主键的类型</typeparam>
+        </member>
+        <member name="T:DataRabbit.IEntityAccesser`1">
+            <summary>
+            IEntityAccesser 用于统合针对数据设备的CRUD操作。
+            </summary>  
+        </member>
+        <member name="T:DataRabbit.IEntityModifier`1">
+            <summary>
+            IEntityModifier 对容器中的实体进行修改操作的统一访问接口。（容器可以是DB、Entity缓存、内存数据库等）
+            </summary>
+            <typeparam name="TEntity">实体的类型</typeparam>
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.Insert(`0,System.Object@)">
+            <summary>
+            插入一个实体对象。如果主键为自增序列，则在返回之前将更新entity对应的字段，并out出主键值。
+            </summary>
+            <param name="entity">要插入的实体对象</param>
+            <param name="identity">自增主键的结果值</param>     
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.Insert(`0)">
+            <summary>
+            插入一个实体对象。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.Insert(System.Collections.Generic.IList{`0})">
+            <summary>
+            插入多个实体对象。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.Update(System.Collections.Generic.ICollection{DataRabbit.ColumnUpdating},DataRabbit.Filter[])">
+            <summary>
+            更新符合conditions的记录中由updatings指定的各个Column为对应目标值。
+            </summary>
+            <param name="updatings">要更新的多个项目</param>
+            <param name="conditions">过滤条件,对多个Condition进行与操作</param>               
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.Update(DataRabbit.ColumnUpdating,DataRabbit.Filter[])">
+            <summary>
+            更新符合conditions的记录中由columnItem指定的Column为对应目标值。
+            </summary>
+            <param name="columnUpdating">要更新的项目</param>
+            <param name="conditions">过滤条件,对多个Condition进行与操作</param>      
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.Update(System.Collections.Generic.ICollection{DataRabbit.ColumnUpdating},DataRabbit.IFilterTree)">
+            <summary>
+            更新符合tree的记录中由updatings指定的各个Column为对应目标值。
+            </summary>
+            <param name="updatings">要更新的多个项目</param>
+            <param name="tree">过滤条件树</param>
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.Update(`0)">
+            <summary>
+            依据主键值来查找目标记录并修改，所以不能修改Entity主键的值。
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.Delete(System.Object)">
+            <summary>
+            根据主键值删除目标记录。
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.Delete(DataRabbit.Filter[])">
+            <summary>
+            删除符合条件的记录。（对多个Condition进行与操作）
+            </summary> 
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.Delete(DataRabbit.IFilterTree)">
+            <summary>
+            删除符合条件树的记录。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.Clear">
+            <summary>
+            删除所有记录（使用delete）。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IEntityModifier`1.ClearByTruncate">
+            <summary>
+            删除所有记录（使用truncate）。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.IEntityQuerist`1">
+            <summary>
+            对容器中的Entity进行查询的统一访问接口。（容器可以是DB、Entity缓存、内存数据库等）
+            </summary>
+            <typeparam name="TEntity">实体的类型</typeparam>
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetCount(DataRabbit.Filter[])">
+            <summary>
+            统计符合条件的记录数（对多个Condition进行与操作）。谨慎调用带参数的GetCount方法，因为每调用一次都会重新统计一次，消耗性能。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetCount(DataRabbit.IFilterTree)">
+            <summary>
+            统计符合条件的记录数。谨慎调用带参数的GetCount方法，因为每调用一次都会重新统计一次，消耗性能。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetCount">
+            <summary>
+            统计记录总数。谨慎调用带参数的GetCount方法，因为每调用一次都会重新统计一次，消耗性能。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetOne(DataRabbit.Filter[])">
+            <summary> 
+            返回符合条件的第一个Entity（对多个Condition进行与操作）。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetOne(DataRabbit.IFilterTree)">
+            <summary> 
+            返回符合条件的第一个Entity。
+            </summary>  
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetOne(System.Object)">
+            <summary>
+            根据主键ID获取Entity对象
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetColumnValue(System.Object,System.String)">
+            <summary>
+            依据主键找到目标记录的columnName列的值。如果目标记录不存在或这目标列为null，则返回null。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetAll">
+            <summary>
+            获取所有的实体的列表。
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetMuch(DataRabbit.Filter[])">
+            <summary>
+            获取满足条件的实体的列表（对多个Condition进行与操作）。
+            </summary>    
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetMuch(DataRabbit.IFilterTree)">
+            <summary>
+            获取满足条件的实体的列表。
+            </summary> 
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetMuch(DataRabbit.IFilterTree,System.Nullable{System.Int32},DataRabbit.Orderby[])">
+            <summary>
+            获取满足条件的实体的排序列表。
+            </summary>
+            <param name="tree">过滤的条件树</param>
+            <param name="topN">返回前多少个实体，如果为null，表示返回符合条件的所有结果</param>
+            <param name="orderbyAry">排序规则</param>        
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetMuch(DataRabbit.IFilterTree,DataRabbit.Groupby,System.Nullable{System.Int32},DataRabbit.Orderby[])">
+            <summary>
+            获取满足条件的实体的排序列表。
+            </summary>
+            <param name="tree">过滤的条件树</param>
+            <param name="groupby">在过滤的条件树的基础上再加上组的聚合值过滤条件</param>
+            <param name="topN">返回前多少个实体，如果为null，表示返回符合条件的所有结果</param>
+            <param name="orderbyAry">排序规则</param>    
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetDistinctList``1(System.String,DataRabbit.Filter[])">
+            <summary>
+            查询满足条件的记录中某个列的所有存在值的列表。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetDistinctList``1(System.String,DataRabbit.IFilterTree)">
+            <summary>
+            查询满足条件的记录中某个列的所有存在值的列表。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetDistinctList``1(System.String)">
+            <summary>
+            查询所有记录中的某个列的所有存在值的列表。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetAggregateValue``1(DataRabbit.AggregateQueryType,System.String,DataRabbit.Filter[])">
+            <summary>
+            对满足条件的记录进行聚合查询，比如count，max，sum等。如果没有满足条件的记录，则返回default(T)。
+            </summary>
+            <typeparam name="T">聚合实体的类型</typeparam>
+            <param name="queryType">聚合查询的类型</param>
+            <param name="columnName">聚合查询的目标列</param>
+            <param name="conditions">过滤条件</param>        
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetAggregateValue``1(DataRabbit.AggregateQueryType,System.String,DataRabbit.IFilterTree)">
+            <summary>
+            对满足条件的记录进行聚合查询，比如count，max，sum等。如果没有满足条件的记录，则返回default(T)。
+            </summary>
+            <typeparam name="T">聚合实体的类型</typeparam>
+            <param name="queryType">聚合查询的类型</param>
+            <param name="columnName">聚合查询的目标列</param>
+            <param name="tree">过滤条件树</param>    
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetAggregateValue``1(DataRabbit.AggregateQueryType,System.String)">
+            <summary>
+            对所有记录进行聚合查询，比如count，max，sum等。如果没有满足条件的记录，则返回default(T)。
+            </summary>
+            <typeparam name="T">聚合实体的类型。</typeparam>
+            <param name="queryType">聚合查询的类型</param>
+            <param name="columnName">聚合查询的目标列</param>
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetAggregateVal(DataRabbit.AggregateQueryType,System.String,DataRabbit.IFilterTree)">
+            <summary>
+            聚合查询，如果没有满足条件的记录，则返回null。
+            </summary>   
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetAggregateValue(System.Collections.Generic.IDictionary{System.String,DataRabbit.AggregateQuery},DataRabbit.IFilterTree)">
+            <summary>
+            GetAggregateValue 同时进行多个聚合值查询。aggregateQueryItems的key为聚合查询的项目名称，与返回的字典中的key完全一致。
+            如果没有满足条件的记录，则返回的字典为null。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetAggregateEntity``1(System.Collections.Generic.IDictionary{System.String,DataRabbit.AggregateQuery},DataRabbit.IFilterTree)">
+            <summary>
+            获取由聚合查询返回聚合值构成的实体对象。
+            如果没有满足条件的记录，则返回default(TAggregateEntity)。
+            TAggregateEntity的定义至少包含了各个聚合查询项目的名称的属性。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetAggregateEntityList``1(DataRabbit.Groupby,System.Collections.Generic.IDictionary{System.String,DataRabbit.AggregateQuery},DataRabbit.IFilterTree,DataRabbit.Orderby[])">
+            <summary>
+            获取由分组查询返回的聚合值构成的实体对象列表。
+            TAggregateEntity的定义至少包含了分组依据列和各个聚合查询项目的名称的属性。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetGroupKeyList``1(DataRabbit.Groupby,DataRabbit.IFilterTree)">
+            <summary>
+            获取符合条件的分组的标志值列表。
+            </summary>
+            <typeparam name="TColumnGroupby">分组依据列的类型</typeparam>        
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetAggregateValueOfGroup``1(DataRabbit.Groupby,System.Collections.Generic.IDictionary{System.String,DataRabbit.AggregateQuery},DataRabbit.IFilterTree)">
+            <summary>
+            分组的多个聚合值查询。
+            </summary>
+            <typeparam name="TColumnGroupby">分组依据列的类型</typeparam>
+            <param name="groupby">分组过滤条件</param>
+            <param name="aggregateQueryItems">聚合查询字典，key为聚合查询项目名称</param>       
+            <returns>key为分组依据列的值，二级key为聚合查询项目名称，与输入参数完全匹配</returns>
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetPage(System.Int32,System.Int32,System.String,System.Boolean,System.Int32@,DataRabbit.Filter[])">
+            <summary>
+            获取分页记录。Filter的顺序需要与Index一致，分页才高效。
+            </summary>
+            <param name="pageSize">分页的大小</param>
+            <param name="pageIndex">要查询目标页的索引</param>
+            <param name="columnOrderby">要进行排序的列，如果传入null，表示不进行排序</param>
+            <param name="ascend">排序规则：升序，降序</param>
+            <param name="entityCount">满足条件的总的实体数量</param>
+            <param name="conditions">过滤条件</param>        
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetPage(System.Int32,System.Int32,System.String,System.Boolean,System.Int32@)">
+            <summary>
+            获取分页记录。
+            </summary>
+            <param name="pageSize">分页的大小</param>
+            <param name="pageIndex">要查询目标页的索引</param>
+            <param name="columnOrderby">要进行排序的列，如果传入null，表示不进行排序</param>
+            <param name="ascend">排序规则：升序，降序</param>
+            <param name="entityCount">总的实体数量</param>        
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetPage(DataRabbit.IFilterTree,System.Int32,System.Int32,System.String,System.Boolean,System.Int32@)">
+            <summary>
+            获取分页记录。IFilterTree中的Filter的顺序需要与Index一致，分页才高效。
+            </summary>
+            <param name="tree">过滤条件树</param>   
+            <param name="pageSize">分页的大小</param>
+            <param name="pageIndex">要查询目标页的索引</param>
+            <param name="columnOrderby">要进行排序的列，如果传入null，表示不进行排序</param>
+            <param name="ascend">排序规则：升序，降序</param>
+            <param name="entityCount">满足条件的总的实体数量</param>  
+        </member>
+        <member name="M:DataRabbit.IEntityQuerist`1.GetPage(DataRabbit.PageQuery)">
+            <summary>
+            分页查询。
+            </summary>
+            <param name="query">分页查询的相关参数封装，可包含携带查询</param>
+            <returns>查询结果</returns>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Application.DBServerAccesser">
+            <summary>
+            针对整个数据库服务器进行访问，而不是针对某个具体的数据库。仅仅支持SqlServer。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Application.TransactionScope">
+            <summary>
+            TransactionScope 事务范围，从TransactionScope中获取的访问器都是基于事务的，并且访问器的生命期将随事务的结束而结束。
+            TransactionScope在构造函数中启动事务。TransactionScope实例通常在Business Flow子层中创建。
+            TransactionScope的IsolationLevel只对Scope范围中的OrmAccesser的Get族方法起作用
+            TransactionScope支持两种使用模式：
+            (1)自动模式：使用using块 ，将在异常发生时，自动回滚事务
+            (2)手动模式：不使用using块，可根据业务需要手动回滚事务，更具灵活性。
+            (3)SqlServer的事务锁定整个表，Oracle的事务锁定到行
+            zhuweisky 2007.01.18
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Application.TransactionScope.Commit">
+            <summary>
+            Commit 提交事务。无论是手动模式还是自动模式，都需要手动调用该方法以提交事务。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Application.TransactionScope.Rollback">
+            <summary>
+            Rollback 如果使用了using块，则将自动Rollback，而不需要手动调用该方法。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Application.TransactionScope.NewOrmAccesser``1(System.String,System.Data.IsolationLevel)">
+            <summary>
+            NewOrmAccesser 如果sourceTable参数不为null，表示数据表名称与Entity名称不一致，而且，Entity的定义可以只覆盖了数据表所有列的一个子集。
+            </summary>      
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Application.TransactionScopeFactory">
+            <summary>
+            TransactionScopeFactory 用于创建TransactionScope的工厂。通常用在Business Flow子层。
+            对于一个数据库只需要维护一个TransactionScopeFactory。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.Application.TransactionScopeFactory.OrmUseEmit">
+            <summary>
+            OrmUseEmit 如果为true，则使用Emit完成ORM，否则使用Relection完成ORM。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.Application.TransactionScopeFactory.DataSchemaCacheEnabled">
+            <summary>
+            DataSchemaCacheEnabled 用于指示SchemaAccesser是否启用数据大纲缓存。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Application.TransactionScopeFactoryProvider`2">
+            <summary>
+            TransactionScopeFactoryProvider 用于管理【1套主/N套从】数据库实例。
+            一套表示支持一个系统运行的不可或缺的相互协作的多个数据库。
+            zhuweisky 2009.04.25
+            </summary>
+            <typeparam name="TSourceKey">表示数据源标志的类型</typeparam>
+            <typeparam name="TSlaveSuitKey">表示每套从库标志的类型</typeparam>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Application.TransactionScopeFactoryProvider`2.GetFactory(`0,System.Boolean)">
+            <summary>
+            GetFactory 获取数据源的Factory。如果是从slave，则从多套Slave中随机选择一套
+            </summary>      
+        </member>
+        <member name="T:DataRabbit.DBAccessing.DataAccesserFactory">
+            <summary>
+            DataAccesserFactory 静态工厂，根据DataConfiguration创建对应的IDataAccesser。
+            zhuweisky
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataAccesserFactory.Register(DataRabbit.DBAccessing.DataBaseType,System.Type)">
+            <summary>
+            Register 注册数据库类型为dbType的IDataAccesser派生类
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataAccesserFactory.Remove(DataRabbit.DBAccessing.DataBaseType)">
+            <summary>
+            Remove 注销数据库类型dbType
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataAccesserFactory.CreateDataAccesser(DataRabbit.DBAccessing.DataConfiguration,System.Boolean,System.Boolean,DataRabbit.DBAccessing.IDBOperationLogger,DataRabbit.DBAccessing.IDBExceptionLogger,DataRabbit.DBAccessing.DataBaseSchema)">
+            <summary>
+            CreateDataAccesser 根据DataConfiguration创建对应的IDataAccesser。
+            如果参数dbSchema为null，表示数据大纲需要从DB系统表获取。
+            </summary>      
+        </member>
+        <member name="P:DataRabbit.DBAccessing.DataAccesserFactory.DataBaseTypeList">
+            <summary>
+            DataBaseTypeList 在DataAccesserFactory中注册的所有数据库类型的列表
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataAccesserFactory.LoadDataRabbits(System.String)">
+            <summary>
+            LoadDataRabbits 加载目录下所有dll中的所有从IDataAccesser派生的类型
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.BaseDataAccesser.GetConnectionString(DataRabbit.DBAccessing.DataConfiguration)">
+            <summary>
+            GetConnectionString 获取连接字符串，要注意DataBaseName属性为null的情况，表示访问整个DBSystem
+            </summary>       
+        </member>
+        <member name="T:DataRabbit.DBAccessing.IDataAccesser">
+            <summary>
+            IDataAccesser 进行数据访问的核心接口。一个IDataAccesser实例用于访问一个特定的目标数据库。
+            注意：
+            对于处于非事务环境中的访问器，可以复用该访问器实例。
+            作者：朱伟 sky.zhuwei@163.com    
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataAccesser.GetOrmAccesser``1(System.Data.IDbTransaction,System.Data.IsolationLevel,System.String)">
+            <summary>
+            GetOrmAccesser 获取访问目标表的ORM访问器。       
+            </summary> 
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataAccesser.GetRelationAccesser(System.Data.IDbTransaction)">
+            <summary>
+            GetRelationAccesser 获取针对整个数据库的关系访问器。       
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataAccesser.GetTableAccesser(System.String,System.Data.IDbTransaction)">
+            <summary>
+            GetTableAccesser 获取访问目标表table的普通访问者
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataAccesser.GetDataSchemaAccesser(System.Data.IDbTransaction)">
+            <summary>
+            GetDataSchemaAccesser 数据库表大纲访问器
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.IDataAccesser.DataBaseType">
+            <summary>
+            DataBaseType 目标数据库类型
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.IDataAccesser.DataElementFactory">
+            <summary>
+            DataElementFactory 数据访问基础元素（Connection、Command、Adapter等）工厂。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.SqlAccesser">
+            <summary>
+            SqlAccesser IDataAccesser在Sql数据库上实现。
+            作者：朱伟 sky.zhuwei@163.com 
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.DataConfiguration">
+            <summary>
+            DataConfiguration 数据库连接配置。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.DataConfiguration.DataBaseSchemaFileName">
+            <summary>
+            DataBaseSchemaFileName 序列化存储DataBaseSchema的文件的名称。该文件要与DataRabbit.dll放在同一目录。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.DataConfiguration.CommandTimeoutInSecs">
+            <summary>
+            CommandTimeoutInSecs 在终止执行命令的尝试并生成错误之前的等待时间。默认值为30s。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.SqliteDataConfiguration.PageSize">
+            <summary>
+            页大小。单位：字节。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.SqliteDataConfiguration.CacheSize">
+            <summary>
+            缓存大小。单位：字节。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.DataBaseType">
+            <summary>
+            DataBaseType 数据库类型枚举
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.IDataElementFactory">
+            <summary>
+            IDataElementFactory 用于构建数据访问的最基础元素。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataElementFactory.NewParameter(System.String,System.Object,System.Data.ParameterDirection,System.Type,System.Int32,System.String,System.String)">
+            <summary>
+            NewParameter 根据指定的参数构建一个新的IDbDataParameter
+            </summary>
+            <param name="paraName">参数名，不能包含参数前缀</param>   
+            <param name="sourceColumn">如果不确定，可以传null</param>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataElementFactory.ConvertToLocalDbTypeString(System.Type)">
+            <summary>
+            ConvertToLocalDbTypeString 将.NET类型转换为使用字符串表示的数据库类型，如"nvarchar"
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataElementFactory.BuildAdapterForCommit(System.String,System.Data.IDbConnection,System.Data.IDbTransaction)">
+            <summary>
+            BuildAdapterForCommit 根据adapter的select语句自动产生其它sql语句
+            如果不需要事务支持，则trans传入null
+            </summary>		
+        </member>
+        <member name="P:DataRabbit.DBAccessing.IDataElementFactory.DBOperationLogger">
+            <summary>
+            DBOperationLogger 用于将IDBOperationLogger传递给CommandExcuter。通过IDataElementFactory来传递，并不是最佳方式，暂用。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.IDataElementFactory.DBExceptionLogger">
+            <summary>
+            DBExceptionLogger 用于将IDBExceptionLogger传递给CommandExcuter。通过IDataElementFactory来传递，并不是最佳方式，暂用。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.DataHelper">
+            <summary>
+            DataHelper DataRabbit命名空间帮助类。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataHelper.FillCommandParameterValue(System.Data.IDbCommand,System.Object)">
+            <summary>
+            FillCommandParameterValue  使用obj的内容填充command中的各个IDbDataParameter的参数值。entityOrRow可以是一个Entity，也可以是一个DataRow
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataHelper.DistillCommandParameter(System.String,System.String)">
+            <summary>
+            DistillCommandParameter 从Sql语句中提取所有的参数名称
+            </summary>        
+            <param name="paraPrefix">参数采用的前缀</param>
+            <returns>返回的参数列表中不包括paraPrefix</returns>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataHelper.ConvertRowToObject(System.Type,System.Data.DataRow)">
+            <summary>
+            ConvertToObject 将一个DataRow转化为一个Entity对象
+            </summary>		
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataHelper.ConvertRowToObject``1(System.Data.DataRow)">
+            <summary>
+            ConvertToObject 将一个DataRow转化为一个Entity对象
+            </summary>		
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataHelper.RefreshEntityFields(System.Object,System.Data.DataRow)">
+            <summary>
+            RefreshEntityFields 使用row的各个列的值更新entity中对应的字段。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataHelper.RefreshEntityFields(System.Object,System.Data.DataRow,System.Collections.Generic.IList{System.String})">
+            <summary>
+            RefreshEntityFields 使用row的各个列的值更新entity中的refreshFields中的各个字段。
+            </summary> 
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataHelper.ConvertDataTableToObjects``1(System.Data.DataTable)">
+            <summary>
+            ConvertDataTableToObjects 将DataTable中的每一行都转化为一个entity
+            </summary>       
+        </member>
+        <member name="T:DataRabbit.DBAccessing.ICommandExcuter">
+            <summary>
+            ICommandExcuter 用于在事务或非事务的环境中执行命令。在执行命令前会自动为Command装配合适的Connection和Transaction。
+            有各个访问器内部使用。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ICommandExcuter.ExcuteCommand(System.Data.IDbCommand)">
+            <summary>
+            ExcuteCommand 根据对象当前的事务状态执行命令
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ICommandExcuter.ExcuteQuery(System.Data.IDbCommand)">
+            <summary>
+            ExcuteCommand 根据对象当前的事务状态执行查询
+            </summary>     
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ICommandExcuter.ExecuteScalar(System.Data.IDbCommand)">
+            <summary>
+            ExcuteCommand 根据对象当前的事务状态执行Scalar
+            </summary>     
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ICommandExcuter.DoCommand(System.String)">
+            <summary>
+            DoCommand 基于简单sql文本执行数据命令
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ICommandExcuter.DoQuery(System.String)">
+            <summary>
+            DoQuery 基于简单sql文本执行数据查询
+            </summary>  
+        </member>
+        <member name="T:DataRabbit.DBAccessing.IDBExceptionLogger">
+            <summary>
+            IDBExceptionLogger 用于记录应用程序针访问数据库时抛出的异常。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.IDBOperationLogger">
+            <summary>
+            IDBOperationLogger 用于记录应用程序针对数据库的访问操作，包括记录数据库操作时抛出的异常。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.IDBOperationLogger.LogAllActionEnabled">
+            <summary>
+            LogAllActionEnabled 是否要记录所有访问数据库的SQL语句。默认为false
+            </summary>   
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDBOperationLogger.LogAllAction(System.String)">
+            <summary>
+            LogAllAction 记录所有访问数据库的SQL语句。
+            </summary>       
+        </member>
+        <member name="P:DataRabbit.DBAccessing.IDBOperationLogger.LogBusinessOrderEnabled">
+            <summary>
+            LogBusinessOrderEnabled 是否要顺序记录事务访问的表，用于检测死锁。默认为false
+            </summary>   
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDBOperationLogger.LogBusinessOrder(System.Collections.Generic.IList{System.String})">
+            <summary>
+            LogBusinessOrder 按顺序记录事务访问的表
+            </summary>       
+        </member>
+        <member name="T:DataRabbit.DBAccessing.IsolationLevelHelper">
+            <summary>
+            IsolationLevelHelper 隔离级别助手。
+            目前只对Scope范围中的OrmAccesser的Get族方法起作用
+            </summary> 
+        </member>
+        <member name="T:DataRabbit.DBAccessing.ITransactionAccesser">
+            <summary>
+            ITransactionAccesser  如果内含的事务对象为null，则ITransactionAccesser对象是无状态的，可将其作为Sinleton使用；
+            否则，ITransactionAccesser对象是有状态的，并且其生命期会随着事务的结束而结束。
+            zhuweisky 2007.01
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ITransactionAccesser.InTransaction">
+            <summary>
+            InTransaction 访问器是否处于一个事务中。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Mapping.BaseORMappingContainer">
+            <summary>
+            BaseORMappingContainer 基类为创建的IORMapping实例提供缓存。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Mapping.IDataSchemaGetter">
+            <summary>
+            IDataSchemaGetter 根据实体的类型获取对应的大纲。
+            如果实体类型对应的是数据库中的表，则获取数据表的大纲。否则，将根据Entity的结构创建大纲。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Mapping.IORMapping`1">
+            <summary>
+            IORMapping 提供DataRow->Entity，Entity－>ParameterValue 的转换
+            </summary>    
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Mapping.IORMapping`1.LoadBlob(`0,System.Data.DataRow)">
+            <summary>
+            LoadBlob 将row中的blob字段赋值给entity
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Mapping.IORMapping`1.FillParameterValue(System.Data.IDbCommand,`0)">
+            <summary>
+            FillParameterValue  使用entity的内容填充command中的各个IDbDataParameter的参数值。
+            </summary>      
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Mapping.IORMappingContainer">
+            <summary>
+            IORMappingContainer 用于保存针对不同TEntity发射的IORMapping实例的引用。
+            </summary>
+        </member>
+        <!-- 对于成员“T:DataRabbit.DBAccessing.Mapping.ReflectionORMapping`1”忽略有格式错误的 XML 注释 -->
+        <!-- 对于成员“T:DataRabbit.DBAccessing.Mapping.ReflectionORMappingContainer”忽略有格式错误的 XML 注释 -->
+        <member name="T:DataRabbit.DBAccessing.BaseSchemaAccesser">
+            <summary>
+            BaseSchemaOperator 用于提供缓存Schema的能力
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.IDataSchemaAccesser">
+            <summary>
+            IDataSchemaOperator 用于访问与操作数据库表的数据大纲。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataSchemaAccesser.GetDataSchema(System.String)">
+            <summary>
+            GetDataSchema 获取目标Table或View的数据大纲
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataSchemaAccesser.GetCompleteDataBaseSchema(System.Boolean)">
+            <summary>
+            GetCompleteDataBaseSchema 获取数据库中所有表/视图的数据大纲。
+            </summary>      
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataSchemaAccesser.CreateTable(System.String,DataRabbit.DBAccessing.DataSchema,System.Boolean)">
+            <summary>
+            CreateTable 在数据库中创建大纲与schema一致的表
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataSchemaAccesser.DropTable(System.String)">
+            <summary>
+            DropTable 删除目标表
+            </summary>      
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataSchemaAccesser.IsTableExist(System.String)">
+            <summary>
+            IsTableExist 目标表table是否存在
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataSchemaAccesser.GetTables">
+            <summary>
+            GetTables 获取目标数据库中的所有用户表的名称	
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataSchemaAccesser.GetViews">
+            <summary>
+            GetViews 获取目标数据库中的所有视图名称
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.IDataSchemaAccesser.GetTriggers(System.String)">
+            <summary>
+            GetTriggers 获取table表上的所有触发器
+            </summary>       
+        </member>
+        <member name="T:DataRabbit.DBAccessing.SqlSchemaAccesser">
+            <summary>
+            SqlServerSchemaOperator 用于操作SqlServer的数据表的大纲。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.ColumnSchema">
+            <summary>
+            ColumnSchema 封装了每一列的大纲信息
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ColumnSchema.ColumnName">
+            <summary>
+            ColumnName 列名
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ColumnSchema.ColumnType">
+            <summary>
+            ColumnType 该列映射的.NET类型
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ColumnSchema.MaxLength">
+            <summary>
+            MaxLength 该列的最大长度（主要针对变长的类型，如string）
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ColumnSchema.IsPrimaryKey">
+            <summary>
+            IsPrimaryKey 是否为主键
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ColumnSchema.AutoIncreased">
+            <summary>
+            AutoIncreased 是否为自增序列
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ColumnSchema.IsTimestamp">
+            <summary>
+            IsTimestamp 是否为timestamp类型，该类型列的值由数据库自动生成。
+            SQL Server timestamp 是二进制数字，它表明数据库中数据修改发生的相对顺序,与日期没有任何关系。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ColumnSchema.AllowNull">
+            <summary>
+            AllowNull 是否允许为空
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ColumnSchema.Comment">
+            <summary>
+            Comment 注释
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ColumnSchema.Tag">
+            <summary>
+            Tag 该ColumnSchema所携带的Tag数据
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.DataBaseSchema">
+            <summary>
+            DataBaseSchema 用于缓存某个数据库内的所有表的大纲。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.DataSchema">
+            <summary>
+            DataSchema 封装了一个数据库表的大纲信息。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.DataSchema.IsPartial">
+            <summary>
+            IsPartial 数据大纲只是目标数据表完整大纲的一部分？（即，不包含目标数据表的所有列）
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.DataSchema.ColumnSchemaList">
+            <summary>
+            ColumnSchemaList 所有Column的Schema
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.DataSchema.ForeignKeyList">
+            <summary>
+            ForeignKeyList 外键列表
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.DataSchema.Tag">
+            <summary>
+            Tag DataSchema携带的Tag数据
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.DataSchema.PKeyList">
+            <summary>
+            PKeyList 主键名称列表
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.DataSchema.NonPKColumnList">
+            <summary>
+            CommonColumnList 非主键字段的名称列表
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.DataSchema.PrimaryKey">
+            <summary>
+            PrimaryKey （多个）主键字段
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchema.AddForeignKey(DataRabbit.DBAccessing.ForeignKey)">
+            <summary>
+            AddForeignKey 添加一个外键
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchema.AddColumnSchema(DataRabbit.DBAccessing.ColumnSchema)">
+            <summary>
+            AddColumnSchema 添加ColumnSchema
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchema.GetColumnSchema(System.String)">
+            <summary>
+            GetColumnSchema 根据列名获取该列的Schema
+            </summary>     
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchema.Contains(System.String)">
+            <summary>
+            Contains 是否包含colName列
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchema.Clear">
+            <summary>
+            Clear 清空所有ColumnSchema
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchema.GetFirstPKeyName">
+            <summary>
+            GetFirstPKeyName 获取第一个主键名
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchema.GetForeignKeyListBy(System.String)">
+            <summary>
+            GetForeignKeyListBy 获取隶属于当前表的外键中主表为parentTable的所有外键
+            </summary>       
+        </member>
+        <member name="T:DataRabbit.DBAccessing.DataSchemaHelper">
+            <summary>
+            DataSchemaHelper 数据大纲辅助功能。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchemaHelper.VerifyDataSchema(DataRabbit.DBAccessing.DataSchema,DataRabbit.DBAccessing.DataSchema,System.String@)">
+            <summary>
+            VerifyDataSchema 判断目标表的大纲与required是否兼容
+            </summary>      
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchemaHelper.VerifyDataSchema(DataRabbit.DBAccessing.DataSchema,System.Data.DataTable)">
+            <summary>
+            VerifyDataSchema 判断目标表的大纲与required是否兼容
+            </summary>      
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchemaHelper.VerifyDataSchema(System.Data.DataTable,System.Type,System.String@)">
+            <summary>
+            VerifyDataSchema 判断Entity的大纲与required是否兼容
+            </summary>      
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchemaHelper.DistillSchema(System.Data.DataTable)">
+            <summary>
+            DistillSchema 获取DataTable的大纲
+            </summary>      
+        </member>
+        <member name="M:DataRabbit.DBAccessing.DataSchemaHelper.DistillSchema(System.Type,System.String,System.Boolean,System.Collections.Generic.List{System.String})">
+            <summary>
+            DistillSchema 获取TEntity的大纲
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.ForeignKey">
+            <summary>
+            ForeignKey 表示数据库表的外键。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ForeignKey.Name">
+            <summary>
+            Name 从表中的外键的列名
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ForeignKey.ParentTable">
+            <summary>
+            ParentTable 主表名
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ForeignKey.ParentPKey">
+            <summary>
+            ParentKeyName 主表中的主键名
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.PrimaryKey">
+            <summary>
+            PrimaryKey 表示主键或复合主键。如果为复合主键，ToString()用逗号分隔各个键名。
+            </summary>    
+        </member>
+        <member name="M:DataRabbit.DBAccessing.PrimaryKey.ParsePrimaryKeyString(System.String)">
+            <summary>
+            ParsePrimaryKeyString 将用逗号分隔各个键名的字符串解析为一个PrimaryKey 
+            </summary>     
+        </member>
+        <member name="M:DataRabbit.DBAccessing.PrimaryKey.AddSubKey(System.String)">
+            <summary>
+            AddSubKey 添加一个作为（复合）主键的列
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.PrimaryKey.RemoveSubKey(System.String)">
+            <summary>
+            RemoveSubKey 移除一个作为（复合）主键的列
+            </summary>  
+        </member>
+        <member name="M:DataRabbit.DBAccessing.PrimaryKey.Clear">
+            <summary>
+            Clear 清空主键或复合主键
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.PrimaryKey.ContainsKey(System.String)">
+            <summary>
+            ContainsKey （复合）主键中是否包含列
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.PrimaryKey.GetPKeyString">
+            <summary>
+            GetPKeyString 用英文逗号连接各个主键名
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.PrimaryKey.GetPKeyValueString(System.Data.DataRow)">
+            <summary>
+            GetPKeyValueString 用英文逗号连接各个主键值
+            </summary> 
+        </member>
+        <member name="M:DataRabbit.DBAccessing.PrimaryKey.GetWhereString(System.Data.DataRow)">
+            <summary>
+            GetWhereString 依据DataRow中各个主键字段的值产生一个where子句
+            </summary>      
+        </member>
+        <member name="P:DataRabbit.DBAccessing.PrimaryKey.Count">
+            <summary>
+            Count 主键或复合主键中包含的列的个数
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.CommandCreator.FillCommandParameters(System.Data.IDbCommand,DataRabbit.DBAccessing.DataSchema,System.Collections.Generic.IList{DataRabbit.FilterParameterCollection})">
+            <summary>
+            FillCommandParameters 使用conditions中的Filter创建command的各个IDbDataParameter。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.CommandCreator.CreateQueryPageCommand(DataRabbit.PageQuery,DataRabbit.DBAccessing.DataSchema,System.String,System.Data.IsolationLevel,System.String[])">
+            <summary>
+            CreateQueryPageCommand  适用于所有版本的SqlServer。
+            步骤如下：
+            （1）创建带自增列ID的临时表。
+            （2）将符合条件的主键值按指定顺序导入到临时表。
+            （3）选出第N页记录的主键值。
+            （4）根据选出的主键值提取记录，并排序。
+            （5）进行携带的聚合查询。
+            （6）删除临时表。 
+            </summary>    
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.CommandCreator.CreateQueryPageCommand4SqlServer2005OrHigh(DataRabbit.PageQuery,DataRabbit.DBAccessing.DataSchema,System.String,System.Data.IsolationLevel,System.String[])">
+            <summary>
+            CreateQueryPageCommand4SqlServer2005OrHigh 使用ROW_NUMBER函数进行分页，针对Sql2005及以上版本       
+            </summary>    
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.CommandCreator.CreateRegularWhereStatement(DataRabbit.IFilterTree,System.Collections.Generic.IList{DataRabbit.FilterParameterCollection}@,System.Int32@)">
+            <summary>
+            CreateRegularWhereStatement 根据IFilterTree得到对应含有参数的where字句。
+            </summary>        
+            <param name="dic_Filter_paraName">每个Filter所对应的参数名（不包含前缀）</param>
+            <returns>含有参数的where字句</returns>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.ORM.ICommandCreator">
+            <summary>
+            ICommandCreator 命令创建器，创建一个可以立即执行IDbCommand对象，该对象的所有参数都已准备好。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.CreateTruncateCommand(System.String)">
+            <summary>
+            CreateTruncateCommand 根据条件（与运算）创建Delete命令
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.CreateDeleteCommand(DataRabbit.IFilterTree,DataRabbit.DBAccessing.DataSchema,System.String)">
+            <summary>
+            CreateDeleteCommand 根据条件（与运算）创建Delete命令
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.CreateDeleteCommand``1(``0,DataRabbit.DBAccessing.DataSchema,System.String)">
+            <summary>
+            CreateDeleteCommand 根据Entity主键值（与运算）创建Delete命令
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.CreateQueryCommand(DataRabbit.IFilterTree,DataRabbit.DBAccessing.DataSchema,System.String,System.Data.IsolationLevel,System.Nullable{System.Int32},System.Collections.Generic.IList{DataRabbit.Orderby},System.String[])">
+            <summary>
+            CreateQueryCommand 根据IFilterTree条件创建Select查询指定的列。tree参数可以为null。
+            </summary>        
+            <param name="columns">如果为null，则返回所有列</param>         
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.CreateQueryPageCommand(DataRabbit.PageQuery,DataRabbit.DBAccessing.DataSchema,System.String,System.Data.IsolationLevel,System.String[])">
+            <summary>
+            CreateQueryPageCommand 创建获取分页记录的Sql命令。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.CreateAggregateQueryCommand(DataRabbit.IFilterTree,DataRabbit.DBAccessing.DataSchema,System.String,System.Collections.Generic.IDictionary{System.String,DataRabbit.AggregateQuery},System.Data.IsolationLevel)">
+            <summary>
+            CreateAggregateQueryCommand 返回聚合查询的命令。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.CreateAggregateQueryOfGroupCommand(DataRabbit.IFilterTree,DataRabbit.DBAccessing.DataSchema,System.String,System.Data.IsolationLevel,DataRabbit.Groupby,System.Collections.Generic.IDictionary{System.String,DataRabbit.AggregateQuery})">
+            <summary>
+            CreateAggregateQueryOfGroupCommand 返回依据组的聚合查询的命令。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.CreateQueryDistinctCommand(DataRabbit.IFilterTree,DataRabbit.DBAccessing.DataSchema,System.String,System.String,System.Data.IsolationLevel)">
+            <summary>
+            CreateQueryDistinctCommand 返回查询Distinct的命令。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.CreateInsertCommand``1(System.String,DataRabbit.DBAccessing.DataSchema,``0)">
+            <summary>
+            CreateInsertCommand 根据大纲创建Insert命令，并使用entityOrRow为参数赋值
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.CreateUpdateCommand``1(System.String,DataRabbit.DBAccessing.DataSchema,System.Collections.Generic.IList{System.String},``0)">
+            <summary>
+            CreateUpdateCommand 根据大纲和脏字段列表创建Update命令，并使用entityOrRow为参数赋值
+            </summary> 
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.CreateUpdateCommand(System.String,DataRabbit.DBAccessing.DataSchema,System.Collections.Generic.ICollection{DataRabbit.ColumnUpdating},DataRabbit.IFilterTree)">
+            <summary>
+            CreateUpdateCommand 根据大纲和conditions以及updatings创建Update命
+            </summary>   
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.ICommandCreator.GetPkeyFiltersByEntity``1(``0,DataRabbit.DBAccessing.DataSchema)">
+            <summary>
+            GetPkeyFilters 依据主键创建对应的Filters
+            </summary>     
+        </member>
+        <member name="T:DataRabbit.DBAccessing.ORM.DataTablePageResult">
+            <summary>
+            DataTablePageResult 分页查询的结果，使用DataTable表示page。
+            </summary>
+        </member>
+        <member name="F:DataRabbit.DBAccessing.ORM.DataTablePageResult.carriedAggregateQueryResult">
+            <summary>
+            carriedAggregateQueryResult 携带的聚合查询项目的结果。键表示聚合查询返回的结果的命名（与查询参数PageQuery.CarriedAggregateQueryDictionary一致），值表示聚合查询的结果。
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.DataTablePageResult.AddAggregateQueryResult(System.String,System.Object)">
+            <summary>
+            AddAggregateQueryResult 添加所携带的聚合查询项目的结果。
+            </summary>  
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.DataTablePageResult.GetAggregateQueryResult(System.String)">
+            <summary>
+            GetAggregateQueryResult 获取所携带的聚合查询项目的结果。
+            </summary>       
+        </member>
+        <member name="T:DataRabbit.DBAccessing.ORM.IOrmAccesser`1">
+            <summary>
+            IOrmAccesser 用于以动态反射的方式进行ORM访问。 一个特定的IOrmAccesser实例用于访问一个特定的目标表。
+            zhuweisky
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.TableName">
+            <summary>
+            TableName 与该IOrmAccesser关联的目标表名称
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.UpdateWithoutBlob(`0)">
+            <summary>
+            更新除Blob字段之外的其它字段。
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.GetOneWithoutBlob(System.Object)">
+            <summary>
+            根据主键ID来提取符合条件Entity，但是Entity的blob字段没有被填充。
+            </summary>      
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.GetOneWithoutBlob(DataRabbit.Filter[])">
+            <summary>
+            根据条件来提取符合条件的第一个Entity，但是Entity的blob字段没有被填充。
+            </summary>      
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.GetOneWithoutBlob(DataRabbit.IFilterTree)">
+            <summary>
+            根据条件来提取符合条件的第一个Entity，但是Entity的blob字段没有被填充。
+            </summary>      
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.Delete(`0)">
+            <summary>
+            Delete 根据Entity中的主键值删除对应的数据库记录
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.GetMuchWithoutBlob(DataRabbit.IFilterTree)">
+            <summary>
+            根据参数tree来提取符合条件的所有Entity，但是Entity的blob字段没有被填充。
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.LoadBlob(`0)">
+            <summary>
+            填充entity的Blob字段
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.GetDataTablePage(DataRabbit.PageQuery,System.String[])">
+            <summary>
+            返回的page只包含指定的列。
+            </summary>        
+            <param name="columns">返回的结果包括哪些列，如果为null，则表示返回所有列。</param>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.GetMuch(System.String)">
+            <summary>
+            当某些条件使用Filter无法表示时，可以直接使用where子句进行查询。注意where子句必须以"where"开头。
+            where子句后可以带orderby子句。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.GetDataTable(DataRabbit.IFilterTree,System.Nullable{System.Int32},System.Collections.Generic.IList{DataRabbit.Orderby},System.String[])">
+            <summary>
+            选取表中符合条件tree的row，并且只返回columns指定的列。如果columns为null，则表示返回所有列。
+            如果要返回所有结果，topN传入null。
+            如果返回的结果不需要排序，则orderbyList可以传入null。        
+            </summary>           
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.GetPage``1(DataRabbit.PageQuery,System.String[])">
+            <summary>
+            返回由某些列构成的SubEntity对象的分页。如果columns为null或长度为0，则将通过TSubEntity的可读写属性来构造列。
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.GetPageWithoutBlob(DataRabbit.PageQuery)">
+            <summary>
+            查询分页，但是Entity的blob字段没有被填充。
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.GetPageWithoutBlob(DataRabbit.IFilterTree,System.Int32,System.Int32,System.String,System.Boolean,System.Int32@)">
+            <summary>
+            查询分页，但是Entity的blob字段没有被填充。
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.IOrmAccesser`1.GetMuch``1(DataRabbit.IFilterTree,System.Nullable{System.Int32},System.Collections.Generic.IList{DataRabbit.Orderby},System.String[])">
+            <summary>
+            返回由某些列构成的SubEntity对象的集合。如果columns为null或长度为0，则将通过TSubEntity的可读写属性来构造列。
+            </summary>  
+        </member>
+        <member name="T:DataRabbit.DBAccessing.ORM.OrmAccesser`1">
+            <summary>
+            OrmAccesser 如果内含的事务对象为null，则OrmAccesser对象是无状态的，可将其作为Sinleton使用；
+            否则，OrmAccesser对象是有状态的，并且其生命期会随着事务的结束而结束。
+            zhuweisky 2006.04
+            最后修订:2007.07.27
+            </summary>   
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.OrmAccesser`1.#ctor(DataRabbit.DBAccessing.IDataSchemaAccesser,DataRabbit.DBAccessing.IDataElementFactory,System.Data.IDbTransaction,System.Data.IsolationLevel,DataRabbit.DBAccessing.ORM.ICommandCreator,DataRabbit.DBAccessing.Mapping.IORMappingContainer,System.String)">
+            <summary>
+            OrmAccesser 如果使用该Ctor，则不再需要额外调用Initialize方法。
+            如果sourceTable参数不为null，表示数据表名称与Entity名称不一致，而且更重要的是，Entity的定义可以只覆盖了数据表所有列的一个子集。
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.ORM.OrmAccesser`1.Initialize(DataRabbit.DBAccessing.Application.TransactionScopeFactory,System.Data.IDbTransaction,System.Data.IsolationLevel)">
+            <summary>
+            Initialize 该方法与不带参数的Ctor结合使用。
+            </summary>       
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ORM.ChatMessageRecord.AutoID">
+            <summary>
+            自增ID，编号。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ORM.ChatMessageRecord.SpeakerID">
+            <summary>
+            发言人的ID。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ORM.ChatMessageRecord.AudienceID">
+            <summary>
+            听众ID，可以为GroupID。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ORM.ChatMessageRecord.OccureTime">
+            <summary>
+            聊天记录发生的时间。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ORM.ChatMessageRecord.Content">
+            <summary>
+            聊天的内容。
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.ORM.ChatMessageRecord.IsGroupChat">
+            <summary>
+            是否为群聊记录。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Relation.IRelationAccesser">
+            <summary>
+            IRelationAccesser 针对某个数据库的基于关系的访问器
+            zhuweisky 2007.01.18
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.IRelationAccesser.DoCommand(System.String)">
+            <summary>
+            DoCommand 执行数据命令
+            </summary>       
+        </member>
+        <!-- 对于成员“M:DataRabbit.DBAccessing.Relation.IRelationAccesser.DoQuery(System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:DataRabbit.DBAccessing.Relation.IRelationAccesser.ExcuteRegularQuery(System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            ExcuteRegularQuery 执行带有参数的查询语句，参数值由paraValues给出。
+            </summary>       
+            <param name="regularQuery">带参数的查询语句</param>
+            <param name="paraPrefix">查询语句中参数的前缀，该前缀可以用户自定义，DataRabbit在执行前会自动将其转换为数据库所要求的参数前缀</param>     
+            <param name="paraValues">键为参数名，不带参数前缀</param>     
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.IRelationAccesser.DoScalar(System.String)">
+            <summary>
+            DoScalar 返回查询结果的第一行的第一列
+            </summary>       
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Relation.RelationAccesser">
+            <summary>
+            RelationAccesser 如果内含的事务对象为null，则RelationAccesser对象是无状态的，可将其作为Sinleton使用；
+            否则，RelationAccesser对象是有状态的，并且其生命期会随着事务的结束而结束。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Relation.ISPAccesser">
+            <summary>
+            ISPAccesser 针对某个数据库的存储过程访问器
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.ISPAccesser.ExcuteNoneQuery(System.String,System.Collections.Generic.IList{DataRabbit.DBAccessing.Relation.SPParameter},System.Collections.Generic.IDictionary{System.String,System.Object}@)">
+            <summary>
+            ExcuteNoneQuery 执行命令式的存储过程，可以输出out参数。
+            </summary>
+            <param name="spName">存储过程名称</param>
+            <param name="parms">所有的[in]和[in,out]参数</param>
+            <param name="outVals">out参数的"名称－值"字典</param>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.ISPAccesser.ExcuteQuery(System.String,System.Collections.Generic.IList{DataRabbit.DBAccessing.Relation.SPParameter},System.Collections.Generic.IDictionary{System.String,System.Object}@)">
+            <summary>
+            ExcuteNoneQuery 执行查询式的存储过程，可以输出out参数。
+            </summary>
+            <param name="spName">存储过程名称</param>
+            <param name="parms">所有的[in]和[in,out]参数</param>
+            <param name="outVals">out参数的"名称－值"字典</param>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Relation.SPAccesser">
+            <summary>
+            SPAccesser 如果内含的事务对象为null，则SPAccesser对象是无状态的，可将其作为Sinleton使用；
+            否则，SPAccesser对象是有状态的，并且其生命期会随着事务的结束而结束。
+            </summary>
+        </member>
+        <member name="T:DataRabbit.DBAccessing.Relation.SPParameter">
+            <summary>
+            SPParameter 存储过程参数
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.SPParameter.#ctor(System.String,System.Data.ParameterDirection,System.Object)">
+            <summary>
+            SPParameter 的构造函数
+            </summary>
+            <param name="paraName">参数名不允许带前缀（如"@"）</param>       
+        </member>
+        <member name="P:DataRabbit.DBAccessing.Relation.SPParameter.Name">
+            <summary>
+            Name 参数名不允许带前缀（如"@"）
+            </summary>
+        </member>
+        <member name="P:DataRabbit.DBAccessing.Relation.ITableAccesser.TableName">
+            <summary>
+            TableName 目标表名称
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.ITableAccesser.CommitData(System.Data.DataTable)">
+            <summary>
+            CommitData 提交DataTable中的changes到数据库
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.ITableAccesser.Delete(System.String)">
+            <summary>
+            Delete 删除目标表中所有满足where条件的记录
+            </summary>        
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.ITableAccesser.Clear">
+            <summary>
+            Clear 清空目标表
+            </summary>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.ITableAccesser.Insert(System.Data.DataRow)">
+            <summary>
+            Insert 将row存放到数据库中
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.ITableAccesser.Get(System.String)">
+            <summary>
+            Get 获取满足条件的DataSet
+            </summary>      
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.ITableAccesser.GetOne(System.String)">
+            <summary>
+            GetOne 返回满足where条件的第一条记录
+            </summary>       
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.ITableAccesser.GetEmptyTable">
+            <summary>
+            GetEmptyTable 获取一个空的DataTable，该DataTable反映了目标表的结构
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.ITableAccesser.GetRecordsCount(System.String)">
+            <summary>
+            GetRecordsCount 获取目标表中满足where条件的记录总数
+            </summary> 
+        </member>
+        <member name="M:DataRabbit.DBAccessing.Relation.ITableAccesser.NewRow">
+            <summary>
+            NewRow 返回一个与目标表大纲完全一致的DataRow，并将各个字段的值赋为DBNull
+            </summary>        
+        </member>
+    </members>
+</doc>

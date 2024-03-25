@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants></DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SqlSugarCore" Version="5.0.2.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TalkBase.NetCore\TalkBase.NetCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DataRabbit.NetCore">
+      <HintPath>..\dlls\DataRabbit.NetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ESBasic.NetCore">
+      <HintPath>..\dlls\ESBasic.NetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ESFramework.MSide.NetCore">
+      <HintPath>..\dlls\ESFramework.MSide.NetCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

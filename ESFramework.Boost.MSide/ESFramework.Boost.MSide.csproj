@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{621472C8-F1EE-413F-BC0C-9091706E9C5B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ESFramework.Boost</RootNamespace>
+    <AssemblyName>ESFramework.Boost.MSide</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\ESFramework.Boost.MSide.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSkin, Version=12.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="ESBasic, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ba1538489f75683e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PublicDlls\ESBasic.dll</HintPath>
+    </Reference>
+    <Reference Include="ESFramework.MSide">
+      <HintPath>..\Dlls\ESFramework.MSide.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Basic\NetworkMonitorcs.cs" />
+    <Compile Include="CommonHelper.cs" />
+    <Compile Include="Controls\AutoDocker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\AutoDocker.Designer.cs">
+      <DependentUpon>AutoDocker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ChatBox\AudioMessageBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ChatBox\AudioMessageBox.Designer.cs">
+      <DependentUpon>AudioMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ChatBox\AudioMessageToken.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ChatBox\AudioMessageToken.Designer.cs">
+      <DependentUpon>AudioMessageToken.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ChatBox\ChatBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ChatBox\GifBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ChatBox\ImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ChatBox\ImageForm.Designer.cs">
+      <DependentUpon>ImageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ChatBox\Internals\CHARRANGE.cs" />
+    <Compile Include="Controls\ChatBox\Internals\CLIPFORMAT.cs" />
+    <Compile Include="Controls\ChatBox\Internals\COMRECT.cs" />
+    <Compile Include="Controls\ChatBox\Internals\DVASPECT.cs" />
+    <Compile Include="Controls\ChatBox\Internals\FORMATETC.cs" />
+    <Compile Include="Controls\ChatBox\Internals\GETCLIPBOARDDATAFLAGS.cs" />
+    <Compile Include="Controls\ChatBox\Internals\GETOBJECTOPTIONS.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IAdviseSink.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IDataObject.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IEnumFORMATETC.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IEnumOLEVERB.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IEnumSTATDATA.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IEnumSTATSTG.cs" />
+    <Compile Include="Controls\ChatBox\Internals\ILockBytes.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IOleClientSite.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IOleContainer.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IOleObject.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IRichEditOle.cs" />
+    <Compile Include="Controls\ChatBox\Internals\ISequentialStream.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IStorge.cs" />
+    <Compile Include="Controls\ChatBox\Internals\IStream.cs" />
+    <Compile Include="Controls\ChatBox\Internals\NativeMethods.cs" />
+    <Compile Include="Controls\ChatBox\Internals\REOBJECT.cs" />
+    <Compile Include="Controls\ChatBox\Internals\REOOBJECTFLAGS.cs" />
+    <Compile Include="Controls\ChatBox\Internals\RichEditOle.cs" />
+    <Compile Include="Controls\ChatBox\Internals\STATDATA.cs" />
+    <Compile Include="Controls\ChatBox\Internals\STGM.cs" />
+    <Compile Include="Controls\ChatBox\Internals\STGMEDIUM.cs" />
+    <Compile Include="Controls\ChatBox\Internals\tagLOGPALETTE.cs" />
+    <Compile Include="Controls\ChatBox\Internals\tagOLEVERB.cs" />
+    <Compile Include="Controls\ChatBox\Internals\TYMED.cs" />
+    <Compile Include="Controls\ChatBox\SnapchatMessageBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ChatBox\SnapchatMessageBox.Designer.cs">
+      <DependentUpon>SnapchatMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ChatPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ChatPanel.Designer.cs">
+      <DependentUpon>ChatPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ReliableUdpSessionStateViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ReliableUdpSessionStateViewer.Designer.cs">
+      <DependentUpon>ReliableUdpSessionStateViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RemoteDiskHandlePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RemoteDiskHandlePanel.Designer.cs">
+      <DependentUpon>RemoteDiskHandlePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RemoteDiskRequestPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RemoteDiskRequestPanel.Designer.cs">
+      <DependentUpon>RemoteDiskRequestPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DignosticLogger.cs" />
+    <Compile Include="Controls\EmotionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\EmotionForm.Designer.cs">
+      <DependentUpon>EmotionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FileTransferingViewer\FileTransferingViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FileTransferingViewer\FileTransferingViewer.Designer.cs">
+      <DependentUpon>FileTransferingViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FileTransferingViewer\FileTransferItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FileTransferingViewer\FileTransferItem.Designer.cs">
+      <DependentUpon>FileTransferItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FileTransferingViewer\IFileTransferingViewer.cs" />
+    <Compile Include="Controls\MainServerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\MainServerForm.Designer.cs">
+      <DependentUpon>MainServerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\FileTransHelper.cs" />
+    <Compile Include="DynamicGroup\BlobFragmentContract.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\BlobReceiver.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\Contracts.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\GroupInfoTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\Information.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\Passive\DynamicGroupOutter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\Passive\DynamicGroupPassiveHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\Passive\IDynamicGroupOutter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\Server\DynamicGroupHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\Server\DynamicGroupManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\Server\IDynamicGroupController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\Server\IDynamicGroupManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicGroup\Server\P2PChannelManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\RemoteDiskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\RemoteDiskForm.Designer.cs">
+      <DependentUpon>RemoteDiskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NetworkDisk\Base\NetworkDiskState.cs" />
+    <Compile Include="NetworkDisk\Base\OperationResult.cs" />
+    <Compile Include="NetworkDisk\Base\SharedDirectory.cs" />
+    <Compile Include="NetworkDisk\Comment4NDisk.cs" />
+    <Compile Include="NetworkDisk\Contracts.cs" />
+    <Compile Include="NetworkDisk\NDiskInfoTypes.cs" />
+    <Compile Include="NetworkDisk\Passive\INDiskBrowser.cs" />
+    <Compile Include="NetworkDisk\Passive\INDiskOutter.cs" />
+    <Compile Include="NetworkDisk\Passive\NDiskBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NetworkDisk\Passive\NDiskBrowser.Designer.cs">
+      <DependentUpon>NDiskBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NetworkDisk\Passive\NDiskOutter.cs" />
+    <Compile Include="NetworkDisk\Passive\NDiskPassiveHandler.cs" />
+    <Compile Include="NetworkDisk\Server\INDiskPathManager.cs" />
+    <Compile Include="NetworkDisk\Server\NDiskHandler.cs" />
+    <Compile Include="NetworkDisk\Server\NetworkDisk.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Controls\ScreenCapturer\Internals\CaptureImageToolColorTable.cs" />
+    <Compile Include="Controls\ScreenCapturer\Internals\ColorLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ScreenCapturer\ColorSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ScreenCapturer\ColorSelector.Designer.cs">
+      <DependentUpon>ColorSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScreenCapturer\Internals\ControlPaintEx.cs" />
+    <Compile Include="Controls\ScreenCapturer\Internals\DrawStyle.cs" />
+    <Compile Include="Controls\ScreenCapturer\Internals\DrawTextData.cs" />
+    <Compile Include="Controls\ScreenCapturer\DrawToolsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ScreenCapturer\DrawToolsControl.designer.cs">
+      <DependentUpon>DrawToolsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScreenCapturer\Internals\DrawToolsDockStyle.cs" />
+    <Compile Include="Controls\ScreenCapturer\Internals\GraphicsPathHelper.cs" />
+    <Compile Include="Controls\ScreenCapturer\Internals\NativeMethods.cs" />
+    <Compile Include="Controls\ScreenCapturer\Internals\OperateManager.cs" />
+    <Compile Include="Controls\ScreenCapturer\Internals\OperateObject.cs" />
+    <Compile Include="Controls\ScreenCapturer\Internals\OperateType.cs" />
+    <Compile Include="Controls\ScreenCapturer\Internals\RegionHelper.cs" />
+    <Compile Include="Controls\ScreenCapturer\Internals\RoundStyle.cs" />
+    <Compile Include="Controls\ScreenCapturer\ScreenCapturer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ScreenCapturer\ScreenCapturer.Designer.cs">
+      <DependentUpon>ScreenCapturer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScreenCapturer\Internals\SizeGrip.cs" />
+    <Compile Include="Controls\ScreenCapturer\Internals\ToolStripRendererEx.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\ChatBox\AudioMessageBox.resx">
+      <DependentUpon>AudioMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ChatBox\AudioMessageToken.resx">
+      <DependentUpon>AudioMessageToken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ChatBox\ChatBox.resx">
+      <DependentUpon>ChatBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ChatBox\GifBox.resx">
+      <DependentUpon>GifBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ChatBox\ImageForm.resx">
+      <DependentUpon>ImageForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ChatBox\SnapchatMessageBox.resx">
+      <DependentUpon>SnapchatMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ChatPanel.resx">
+      <DependentUpon>ChatPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EmotionForm.resx">
+      <DependentUpon>EmotionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FileTransferingViewer\FileTransferingViewer.resx">
+      <DependentUpon>FileTransferingViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FileTransferingViewer\FileTransferItem.resx">
+      <DependentUpon>FileTransferItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainServerForm.resx">
+      <DependentUpon>MainServerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ReliableUdpSessionStateViewer.resx">
+      <DependentUpon>ReliableUdpSessionStateViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RemoteDiskHandlePanel.resx">
+      <DependentUpon>RemoteDiskHandlePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RemoteDiskRequestPanel.resx">
+      <DependentUpon>RemoteDiskRequestPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RemoteDiskForm.resx">
+      <DependentUpon>RemoteDiskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NetworkDisk\Passive\NDiskBrowser.resx">
+      <DependentUpon>NDiskBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ScreenCapturer\ColorSelector.resx">
+      <DependentUpon>ColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ScreenCapturer\DrawToolsControl.resx">
+      <DependentUpon>DrawToolsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ScreenCapturer\ScreenCapturer.resx">
+      <DependentUpon>ScreenCapturer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\busy.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Conversation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cut_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\" />
+    <Folder Include="Server\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chatfrom_voice_playing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\阅后即焚.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AV_Accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_addfile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_root.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_upload.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
